@@ -28,6 +28,14 @@ const navigationItems = [
     href: "/about",
   },
   {
+    title: "Services",
+    href: "/services",
+  },
+  {
+    title: "Team",
+    href: "/team",
+  },
+  {
     title: "Projects",
     href: "/projects",
   },
@@ -46,67 +54,69 @@ export function MainNav() {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center space-x-8 relative z-50">
         {navigationItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={cn(
-              "text-sm font-medium transition-colors hover:text-primary",
-              pathname === item.href
-                ? "text-primary"
-                : "text-muted-foreground"
-            )}
-          >
-            {item.title}
-          </Link>
-        ))}
-        
-        {/* Services Dropdown */}
-        <div className="relative group">
-          <div className="flex items-center gap-1">
+          item.title === "Services" ? (
+            <div key={item.href} className="relative group">
+              <div className="flex items-center gap-1">
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "text-sm font-medium transition-colors hover:text-primary",
+                    pathname.startsWith(item.href)
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  )}
+                >
+                  {item.title}
+                </Link>
+                <Button 
+                  variant="ghost" 
+                  className="p-0 h-auto hover:bg-transparent"
+                >
+                  <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180 text-muted-foreground" />
+                </Button>
+              </div>
+              <div className="absolute -left-48 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[300px] w-max max-w-[95vw]">
+                <div className="bg-white dark:bg-gray-950 rounded-xl shadow-lg ring-1 ring-black/5 dark:ring-white/5 p-4">
+                  <div className="grid gap-2">
+                    {services.map((service) => (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        className="group/item block p-3 rounded-lg hover:bg-accent/50 transition-colors border border-transparent hover:border-accent"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-semibold group-hover/item:text-primary transition-colors">
+                              {service.title}
+                            </div>
+                            <div className="text-sm text-muted-foreground line-clamp-2">
+                              {service.description}
+                            </div>
+                          </div>
+                          <ArrowRight className="w-5 h-5 text-muted-foreground/50 group-hover/item:text-primary transition-colors" />
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
             <Link
-              href="/services"
+              key={item.href}
+              href={item.href}
               className={cn(
                 "text-sm font-medium transition-colors hover:text-primary",
-                pathname.startsWith("/services")
+                pathname === item.href
                   ? "text-primary"
                   : "text-muted-foreground"
               )}
             >
-              Services
+              {item.title}
             </Link>
-            <Button 
-              variant="ghost" 
-              className="p-0 h-auto hover:bg-transparent"
-            >
-              <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180 text-muted-foreground" />
-            </Button>
-          </div>
-          <div className="absolute right-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[300px] w-max max-w-[95vw]">
-            <div className="bg-white dark:bg-gray-950 rounded-xl shadow-lg ring-1 ring-black/5 dark:ring-white/5 p-4">
-              <div className="grid gap-2">
-                {services.map((service) => (
-                  <Link
-                    key={service.href}
-                    href={service.href}
-                    className="group/item block p-3 rounded-lg hover:bg-accent/50 transition-colors border border-transparent hover:border-accent"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-semibold group-hover/item:text-primary transition-colors">
-                          {service.title}
-                        </div>
-                        <div className="mt-1 text-xs text-muted-foreground line-clamp-2">
-                          {service.description}
-                        </div>
-                      </div>
-                      <ArrowRight className="h-4 w-4 text-muted-foreground/50 group-hover/item:text-primary group-hover/item:translate-x-1 transition-all flex-shrink-0" />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+          )
+        ))}
+        
       </nav>
 
       {/* Mobile Navigation */}

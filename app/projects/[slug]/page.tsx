@@ -72,7 +72,7 @@ const projects = [
     location: "Suburban Center",
     date: "2022",
     category: "Commercial",
-    coverImage: "https://images.unsplash.com/photo-1613514785940-daed77165130?q=80&w=2070&auto=format&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=2788&auto=format&fit=crop",
     gallery: [
       "https://images.unsplash.com/photo-1567449303078-57ad995bd17f?q=80&w=2070&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1519566335946-e6f65f0f4fdf?q=80&w=2070&auto=format&fit=crop",

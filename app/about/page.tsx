@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
 import { teamMembers } from "@/data/team"
+import { CTASection } from "@/components/sections/cta-section"
 
 const timeline = [
   {
@@ -114,10 +115,13 @@ export default function AboutPage() {
                 a leading force in the construction industry. Our commitment to
                 excellence and innovation drives everything we do.
               </p>
+              <Link href="/contact" >
               <Button size="lg" className="bg-primary hover:bg-primary/90">
                 Contact Us
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
+              </Link>
+
             </motion.div>
           </div>
           <div className="absolute inset-0 bg-grid-white/5 bg-[size:20px_20px] pointer-events-none z-10" />
@@ -396,19 +400,30 @@ export default function AboutPage() {
         {/* Team Section */}
         <section className="py-24 bg-secondary/50">
           <div className="container">
-            <div className="text-center mb-12">
-              <Badge className="mb-4">Our Team</Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Meet Our Leadership</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Get to know the experts who drive our success and innovation in construction.
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-bold mb-4">Meet Our Leadership</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+                Our experienced team brings together decades of expertise in construction and project management.
               </p>
-            </div>
+              <Link href="/team">
+                <Button variant="outline" size="lg">
+                  View All Team Members
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {teamMembers.map((member, index) => (
                 <Link 
                   key={index}
-                  href={`/about/team/${member.slug}`}
+                  href={`/team/${member.slug}`}
                   className="block"
                 >
                   <motion.div
@@ -444,29 +459,7 @@ export default function AboutPage() {
         <Values />
 
         {/* CTA Section */}
-        <section className="py-24 bg-primary">
-          <div className="container">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="max-w-2xl mx-auto text-center text-white"
-            >
-              <Badge className="mb-4 bg-white/10 hover:bg-white/20 text-white">Get Started</Badge>
-              <h2 className="text-3xl font-bold mb-6">
-                Ready to Start Your Project?
-              </h2>
-              <p className="text-lg mb-8 text-white/80">
-                Let's work together to bring your construction vision to life. Our team is ready to help you every step of the way.
-              </p>
-              <Button size="lg" variant="secondary">
-                Contact Our Team
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </motion.div>
-          </div>
-        </section>
+        <CTASection />
       </main>
     </div>
   )

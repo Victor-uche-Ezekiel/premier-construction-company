@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Building2, Building, Hammer, HardHat } from "lucide-react"
 import Image from "next/image"
 import { services } from "@/data/services"
+import { CTASection } from "@/components/sections/cta-section"
 
 const serviceIcons = {
   "residential-construction": Building2,
@@ -49,10 +50,12 @@ export default function ServicesPage() {
               <p className="text-xl mb-8 text-gray-200">
                 From residential projects to commercial developments, we offer a full range of construction services tailored to your needs.
               </p>
-              <Button size="lg" variant="secondary">
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href="/contact">
+                <Button size="lg" variant="secondary">
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </motion.div>
           </div>
           <div className="absolute inset-0 bg-grid-white/5 bg-[size:20px_20px] pointer-events-none z-10" />
@@ -126,21 +129,11 @@ export default function ServicesPage() {
               </div>
 
               {/* CTA Section */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-center space-y-6 max-w-2xl mx-auto pt-16"
-              >
-                <h3 className="text-2xl font-semibold">Ready to Start Your Project?</h3>
-                <p className="text-muted-foreground">
-                  Contact us today to discuss your construction needs and get a free consultation
-                </p>
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  Contact Us
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </motion.div>
+              <CTASection 
+                title="Ready to Start Your Construction Project?"
+                description="Get in touch with our expert team to discuss your construction needs and bring your vision to life."
+                buttonText="Start Your Project"
+              />
             </motion.div>
           </div>
         </section>

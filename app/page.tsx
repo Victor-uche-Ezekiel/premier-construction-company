@@ -7,6 +7,7 @@ import { ArrowRight, CheckCircle, ArrowUpRight, Star, Calendar, Ruler, Hammer } 
 import { Stats } from "@/components/sections/stats"
 import { Newsletter } from "@/components/sections/newsletter"
 import Image from "next/image"
+import Link from "next/link"
 
 const projects = [
   {
@@ -156,17 +157,21 @@ export default function Home() {
                 We bring innovation, quality, and reliability to every project.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-sm sm:text-base">
-                  Start Your Project
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-black text-sm sm:text-base"
-                >
-                  View Portfolio
-                </Button>
+                <Link href="/contact">
+                  <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-sm sm:text-base">
+                    Start Your Project
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/projects">
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-black text-sm sm:text-base"
+                  >
+                    View Portfolio
+                  </Button>
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -227,43 +232,44 @@ export default function Home() {
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {projects.map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group relative overflow-hidden rounded-xl bg-background shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="aspect-video relative overflow-hidden">
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-all z-10" />
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      // my modification
-
-                      width={2070}
-                      height={1350}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <Badge className="mb-2">{project.category}</Badge>
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-muted-foreground mb-4">{project.description}</p>
-                    <Button variant="outline" size="sm">
-                      View Project
-                      <ArrowUpRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </div>
-                </motion.div>
+                <Link href={`/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`} key={project.title}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="group relative overflow-hidden rounded-lg bg-background shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    <div className="aspect-video relative overflow-hidden">
+                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-all z-10" />
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={2070}
+                        height={1350}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <Badge className="mb-2">{project.category}</Badge>
+                      <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                      <p className="text-muted-foreground mb-4">{project.description}</p>
+                      <Button variant="outline" size="sm">
+                        View Project
+                        <ArrowUpRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </div>
+                  </motion.div>
+                </Link>
               ))}
             </div>
             <div className="text-center mt-12">
-              <Button variant="outline" size="lg">
-                View All Projects
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href="/projects">
+                <Button variant="outline" size="lg">
+                  View All Projects
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
@@ -379,8 +385,6 @@ export default function Home() {
                     <Image
                       src={testimonial.image}
                       alt={testimonial.name}
-                      // my modification
-
                       width={48}
                       height={48}
                       className="w-12 h-12 rounded-full object-cover"
@@ -421,37 +425,37 @@ export default function Home() {
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {newsItems.map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group relative overflow-hidden rounded-xl bg-background shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="aspect-video relative overflow-hidden">
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-all z-10" />
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      // my modification
-                      width={2070}
-                      height={1350}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <p className="text-sm text-muted-foreground mb-2">{item.date}</p>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4">{item.excerpt}</p>
-                    <Button variant="link" className="p-0">
-                      Read More
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </div>
-                </motion.div>
+                <Link href={`/blog/${item.title.toLowerCase().replace(/\s+/g, '-')}`} key={item.title}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="group relative overflow-hidden rounded-lg bg-background hover:bg-accent transition-colors"
+                  >
+                    <div className="aspect-video relative overflow-hidden">
+                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-all z-10" />
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={2070}
+                        height={1350}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <p className="text-sm text-muted-foreground mb-2">{item.date}</p>
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-4">{item.excerpt}</p>
+                      <Button variant="link" className="p-0">
+                        Read More
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </div>
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </div>
@@ -474,21 +478,26 @@ export default function Home() {
                   is ready to help you every step of the way.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                  <Button 
-                    size="lg" 
-                    variant="secondary"
-                    className="w-full sm:w-auto text-sm sm:text-base"
-                  >
-                    Start Your Project
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-primary text-sm sm:text-base"
-                  >
-                    View Portfolio
-                  </Button>
+                  <Link href="/contact">
+                    <Button 
+                      size="lg" 
+                      variant="secondary"
+                      className="w-full sm:w-auto text-sm sm:text-base"
+                    >
+                      Start Your Project
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Link href="/projects">
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-primary text-sm sm:text-base"
+                    >
+                      View Portfolio
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
               </motion.div>
             </div>

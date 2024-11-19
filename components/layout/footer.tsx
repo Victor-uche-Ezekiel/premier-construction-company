@@ -2,20 +2,20 @@
 
 import Link from "next/link"
 import { Facebook, Instagram, Linkedin, Twitter, MapPin, Mail, Phone } from "lucide-react"
-import { Newsletter } from "@/components/sections/newsletter"
 
 const footerLinks = {
   company: [
     { name: "About Us", href: "/about" },
     { name: "Projects", href: "/projects" },
+    { name: "Team", href: "/team" },
     { name: "Services", href: "/services" },
     { name: "Careers", href: "/careers" },
   ],
   services: [
-    { name: "Residential Construction", href: "/services#residential" },
-    { name: "Commercial Construction", href: "/services#commercial" },
-    { name: "Renovation", href: "/services#renovation" },
-    { name: "Project Management", href: "/services#management" },
+    { name: "Residential Construction", href: "/services/residential-construction" },
+    { name: "Commercial Construction", href: "/services/commercial-construction" },
+    { name: "Renovation", href: "/services/renovation-services" },
+    { name: "Project Management", href: "/services/project-management" },
   ],
   contact: [
     { 
@@ -47,18 +47,15 @@ export function Footer() {
 
   return (
     <footer className="bg-background">
-      {/* Newsletter Section */}
-      <Newsletter />
-
       {/* Footer Content */}
-      <div className="container px-4 sm:px-6 py-12 sm:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/">
               <h2 className="text-2xl font-bold mb-4">ConstructionCo</h2>
             </Link>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-muted-foreground mb-6 max-w-md lg:max-w-full">
               Building excellence through innovation and dedication. Your trusted partner in construction since 1995.
             </p>
             <div className="flex gap-4">
@@ -79,8 +76,8 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="font-semibold mb-4">Company</h3>
-            <ul className="space-y-3">
+            <h3 className="font-semibold mb-4 text-lg">Company</h3>
+            <ul className="space-y-2.5">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link 
@@ -96,8 +93,8 @@ export function Footer() {
 
           {/* Services Links */}
           <div>
-            <h3 className="font-semibold mb-4">Services</h3>
-            <ul className="space-y-3">
+            <h3 className="font-semibold mb-4 text-lg">Services</h3>
+            <ul className="space-y-2.5">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link 
@@ -112,19 +109,19 @@ export function Footer() {
           </div>
 
           {/* Contact Information */}
-          <div>
-            <h3 className="font-semibold mb-4">Contact Us</h3>
-            <ul className="space-y-3">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className="font-semibold mb-4 text-lg">Contact Us</h3>
+            <ul className="space-y-4">
               {footerLinks.contact.map((item, index) => (
                 <li key={index}>
                   <a
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-start gap-2 text-muted-foreground hover:text-primary transition-colors"
+                    className="flex items-start gap-3 text-muted-foreground hover:text-primary transition-colors group"
                   >
-                    <item.icon className="h-5 w-5 mt-1 shrink-0" />
-                    <span>{item.content}</span>
+                    <item.icon className="h-5 w-5 mt-0.5 shrink-0 group-hover:text-primary" />
+                    <span className="text-sm leading-relaxed">{item.content}</span>
                   </a>
                 </li>
               ))}
@@ -135,12 +132,12 @@ export function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t">
-        <div className="container py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-            <div>
+        <div className="container px-4 sm:px-6 py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+            <div className="text-center sm:text-left">
               &copy; {currentYear} ConstructionCo. All rights reserved.
             </div>
-            <div className="flex gap-6">
+            <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">
               <Link href="/privacy" className="hover:text-primary transition-colors">
                 Privacy Policy
               </Link>

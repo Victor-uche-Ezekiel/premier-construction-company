@@ -218,7 +218,6 @@ export default function AboutPage({ params }: { params: { slug: string } }) {
           <Image
             src={section.coverImage}
             alt={section.title}
-            fill
             width={2070}
             height={1380}
             className="object-cover"

@@ -3,9 +3,10 @@
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { ArrowLeft, CheckCircle2, Clock } from "lucide-react"
+import { ArrowLeft, ArrowRight, CheckCircle2, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 
 // This would typically come from your CMS or API
 const services = [
@@ -177,15 +178,16 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
   return (
     <div className="min-h-screen py-20">
       <div className="container">
-        {/* Back Button */}
+        {/* Go to services page Button */}
+        <Link href='/services'>
         <Button
           variant="ghost"
           className="mb-8"
-          onClick={() => window.history.back()}
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Services
+          >
+          Go To Services Page
+          <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
+          </Link>
 
         {/* Service Header */}
         <motion.div

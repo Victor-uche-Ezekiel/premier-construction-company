@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Image from "next/image"
+import { CTASection } from "@/components/sections/cta-section"
 
 const projects = [
   {
@@ -31,7 +32,7 @@ const projects = [
     title: "Shopping Mall Development",
     category: "Commercial",
     location: "Suburban Center",
-    image: "https://images.unsplash.com/photo-1613514785940-daed77165130?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=2788&auto=format&fit=crop",
     description: "Modern retail space featuring innovative design and sustainable practices.",
     year: "2022",
   },
@@ -66,23 +67,23 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen py-20">
-      <div className="container">
-        {/* Hero Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl font-bold mb-4">Our Projects</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore our portfolio of successful projects that showcase our expertise
-            in various construction sectors.
-          </p>
-        </motion.div>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-12"
+      >
+        <h1 className="text-4xl font-bold mb-4">Our Projects</h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Explore our portfolio of successful projects that showcase our expertise
+          in various construction sectors.
+        </p>
+      </motion.div>
 
-        {/* Filters and Search */}
+      {/* Filters and Search */}
+      <div className="container px-4 py-16">
         <div className="flex flex-col sm:flex-row gap-4 mb-12">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
@@ -139,6 +140,13 @@ export default function ProjectsPage() {
           ))}
         </div>
       </div>
+
+      {/* CTA Section */}
+      <CTASection 
+        title="Have a Project in Mind?"
+        description="From concept to completion, we're here to make your construction project a success."
+        buttonText="Discuss Your Project"
+      />
     </div>
   )
 }
